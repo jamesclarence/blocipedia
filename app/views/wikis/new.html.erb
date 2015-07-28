@@ -1,0 +1,27 @@
+<h1>Create A New Wiki</h1>
+ 
+ <div class="row">
+   <div class="col-md-4">
+     <h3>Guidelines for wikis</h3>
+     <ul>
+       <li>Search Blocipedia in case an article already exists on the subject</li>
+       <li>Practice editing already existing articles</li>
+       <li>Gather sources</li>
+     </ul>
+   </div>
+   <div class="col-md-8">
+     <%= form_for @wiki do |f| %>
+       <div class="form-group">
+         <%= f.label :title %>
+         <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+       </div>
+       <div class="form-group">
+         <%= f.label :body %>
+         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+       </div>
+       <div class="form-group">
+         <%= f.submit "Save", class: 'btn btn-success' %>
+       </div>
+     <% end %>
+   </div>
+ </div>
