@@ -4,8 +4,8 @@
 A project from the Rails Web Development track on [Bloc](http://bloc.io).
 
 ##### *User Stories*
-1. User Sign Up
-2. User Sign In and Out
+1. User Sign Up (*complete*)
+2. User Sign In and Out (*complete*)
 3. Standard user: Create, read, update, and delete public wikis
 4. Offer three user roles: admin, standard, or premium
 5. Seed data with users and wikis
