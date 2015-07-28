@@ -10,11 +10,7 @@
 <body>
     <div class="container">
       <ul class="nav nav-tabs">
-        <% if current_user %>
-          Hello <%= current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-        <% else %>
           <li><%= link_to "Blocipedia", root_path %></li>
-        <% end %>
         <div class="nav navbar-nav navbar-right">
           <% if current_user %>
               <li class="dropdown">
@@ -29,7 +25,7 @@
               <%= link_to "Sign Up", new_user_registration_path %>
             <% end %>
         </div>   
-    </ul>
+      </ul>
 
   <% if flash[:notice] %>
     <div class="alert alert-success">
