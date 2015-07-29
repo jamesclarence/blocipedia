@@ -28,7 +28,7 @@ class WikisController < ApplicationController
   end
 
   def update
-    @wiki = wiki.find(params[:id])
+    @wiki = Wiki.find(params[:id])
     
     if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
      flash[:notice] = "Wiki article was updated."
