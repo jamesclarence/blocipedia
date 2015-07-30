@@ -50,6 +50,9 @@ admin = User.new(
 admin.skip_confirmation!
 admin.save!
 
- puts "Seed finished"
- puts "#{User.count} users created"
- puts "#{Wiki.count} wikis created"
+puts "Seed finished"
+puts "#{User.count} users created"
+puts "#{Wiki.count} wikis created"
+puts "#{standard.count} standard user created"
+puts "#{premium.count} premium user created"
+puts "#{admin.count} admin user created"
