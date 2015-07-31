@@ -10,7 +10,11 @@
 <body>
     <div class="container">
       <ul class="nav nav-tabs">
-          <li><%= link_to "Blocipedia", root_path %></li>
+          <% if current_user %>
+            <li><%= link_to "Blocipedia", wikis_path %></li>
+          <% else %>
+            <li><%= link_to "Blocipedia", root_path %></li>
+          <% end %>
         <div class="nav navbar-nav navbar-right">
           <% if current_user %>
               <li class="dropdown">
