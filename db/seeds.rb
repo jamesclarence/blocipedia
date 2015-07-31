@@ -15,7 +15,9 @@ end
 50.times do
    Wiki.create!(
      title:  Faker::Lorem.sentence,
-     body:   Faker::Lorem.paragraph
+     body:   Faker::Lorem.paragraph,
+     created_at: Faker::Date.between(14.days.ago, 7.days.ago),
+     updated_at: Faker::Date.between(6.days.ago, Date.today)
    )
  end
  Wikis = Wiki.all
