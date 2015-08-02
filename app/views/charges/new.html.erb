@@ -1,2 +1,7 @@
-<h1>Charges#new</h1>
-<p>Find me in app/views/charges/new.html.erb</p>
+ <%= form_tag charges_path do %>
+   <h4>Click the button!</h4>
+   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="1500"></script>
+ <% end %>
