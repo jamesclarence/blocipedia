@@ -19,8 +19,8 @@ class ChargesController < ApplicationController
       currency: 'usd'
       )
 
-    flash[:success] = "Thank you for your payment, #{current_user.email}!"
-    redirect_to user_path(current_user)
+    flash[:success] = "Thank you for upgrading to Premium, #{current_user.email}!"
+    redirect_to charges_path
 
     # Stripe will send back CardErrors, with friendly messages
     rescue Stripe::CardError => e
