@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
   def default_user_role_standard
     self.role ||= 'standard'
   end
+
+  def premium_to_standard
+    current_user.update_attributes(:role => 'standard')
+  end
 end

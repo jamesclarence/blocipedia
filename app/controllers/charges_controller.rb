@@ -23,7 +23,7 @@ class ChargesController < ApplicationController
       flash[:success] = "Thank you for upgrading to Premium, #{current_user.email}!"
       redirect_to edit_user_registration_path
     else
-      flash[:success] = "There was an error upgrading your account."
+      flash[:error] = "There was an error upgrading your account."
       redirect_to edit_user_registration_path
     end
 
@@ -31,5 +31,27 @@ class ChargesController < ApplicationController
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to new_charge_path
-  end   
+  end
+
+  def destroy
+    if current_user.premium?
+      cu = Stripe::Customer.retrieve({customer_id})
+      cu.delete
+      current_user.update(role: 'standard')
+      flash[:success] = "You downgraded from Premium to Standard, #{current_user.email}!"
+      redirect_to edit_user_registration_path
+    else
+      flash[:error] = "There was an error upgrading your account."
+      redirect_to edit_user_registration_path
+    end
+
+    # if @user.premium_to_standard
+    #   flash[:notice] = "Membership downgraded to Standard."
+    #   redirect_to edit_user_registration_path
+    # else
+    #   flash[:error] = "There was an error downgrading your account."
+    #   redirect_to edit_user_registration_path 
+    # end
+  end 
+
 end
