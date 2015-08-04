@@ -34,9 +34,9 @@ class ChargesController < ApplicationController
   end
 
   def destroy
-    if current_user.premium?
-      cu = Stripe::Customer.retrieve({customer_id})
-      cu.delete
+    @customer = Stripe::Customer.retrieve({customer_id})
+    
+    if @customer.destroy
       current_user.update(role: 'standard')
       flash[:success] = "You downgraded from Premium to Standard, #{current_user.email}!"
       redirect_to edit_user_registration_path
