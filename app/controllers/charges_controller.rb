@@ -34,7 +34,8 @@ class ChargesController < ApplicationController
   end
 
   def destroy
-    @customer = Stripe::Customer.retrieve({customer_id})
+    @customer = User.find(params[:user_id])
+    customer = Stripe::Customer.retrieve({customer_id})
     
     if @customer.destroy
       current_user.update(role: 'standard')
