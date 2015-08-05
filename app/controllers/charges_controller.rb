@@ -33,12 +33,15 @@ class ChargesController < ApplicationController
       redirect_to new_charge_path
   end
 
-  def destroy
-    @customer = User.find(params[:user_id])
-    customer = Stripe::Customer.retrieve({customer_id})
+  def update
+    # require "stripe"
+    # Stripe.api_key = "sk_test_JTqMAOZf0d9P3iXuZ8Bezn97"
+
+    @customer = User.find(params[:id])
+    # customer = Stripe::Customer.retrieve(:customer_id)
     
-    if @customer.destroy
-      current_user.update(role: 'standard')
+    if @customer.update
+      @customer.premium_to_standard
       flash[:success] = "You downgraded from Premium to Standard, #{current_user.email}!"
       redirect_to edit_user_registration_path
     else
