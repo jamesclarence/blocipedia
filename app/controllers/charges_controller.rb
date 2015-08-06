@@ -32,30 +32,4 @@ class ChargesController < ApplicationController
       flash[:error] = e.message
       redirect_to new_charge_path
   end
-
-  def update
-    # require "stripe"
-    # Stripe.api_key = "sk_test_JTqMAOZf0d9P3iXuZ8Bezn97"
-
-    @customer = User.find(params[:id])
-    # customer = Stripe::Customer.retrieve(:customer_id)
-    
-    if @customer.update
-      @customer.premium_to_standard
-      flash[:success] = "You downgraded from Premium to Standard, #{current_user.email}!"
-      redirect_to edit_user_registration_path
-    else
-      flash[:error] = "There was an error upgrading your account."
-      redirect_to edit_user_registration_path
-    end
-
-    # if @user.premium_to_standard
-    #   flash[:notice] = "Membership downgraded to Standard."
-    #   redirect_to edit_user_registration_path
-    # else
-    #   flash[:error] = "There was an error downgrading your account."
-    #   redirect_to edit_user_registration_path 
-    # end
-  end 
-
 end
