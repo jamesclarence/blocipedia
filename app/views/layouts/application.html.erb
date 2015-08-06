@@ -22,10 +22,11 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
                   <li><%= link_to "Change your password?", edit_user_registration_path %></li>
+                  <li><%= link_to "Upgrade your account", new_charge_path %></li>
                 </ul>
               </li>
             <% else %>
-              <%= link_to "Sign In", new_user_session_path %> or
+              <%= link_to "Log In", new_user_session_path %> or
               <%= link_to "Sign Up", new_user_registration_path %>
             <% end %>
         </div>   

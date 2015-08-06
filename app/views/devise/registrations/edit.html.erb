@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Your Account</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -13,27 +13,37 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :new_password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :new_password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password %> <i>(to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+</br>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<% if current_user.standard? %>
+  <h3>Upgrade Your Account</h3>
+  <p>You're currently a <em><%= current_user.role.capitalize %> Member</em>.</p>
+  <%= button_to "Upgrade Now", new_charge_path, :class => "btn btn-lg btn-primary",method: :get %>
+<% else %>
+  <h3>Your Account Status</h3>
+  <p>You're currently a <em><%= current_user.role.capitalize %> Member</em>.</p>
+<% end %>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<h3>Downgrade Or Cancel Account</h3>
+<p><%= button_to "Downgrade To Standard", user_premium_to_standard_path(current_user), data: { confirm: 'Are you sure?' }, method: :post %></p>
+<p><%= button_to "Cancel My Blocipedia Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>

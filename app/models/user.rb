@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   before_create :default_user_role_standard
+  has_one :subscription
 
   def standard?
     role == 'standard'
@@ -17,9 +18,13 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
 
+  # def premium_to_standard
+  #   update_attributes(:role => 'standard')
+  # end
+
   private
 
   def default_user_role_standard
-    self.role = 'standard'
+    self.role ||= 'standard'
   end
 end
