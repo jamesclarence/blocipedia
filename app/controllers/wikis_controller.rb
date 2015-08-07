@@ -13,6 +13,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
+    authorize @wiki
     
     if @wiki.save
       flash[:notice] = "Wiki article was saved."
@@ -25,6 +26,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
