@@ -6,6 +6,11 @@
 			<div class="media-body">
 				<h4 class="media-heading">
 					<%= link_to wiki.title, wiki %>
+					<% if wiki.public == true %>
+						<button type="button" class="btn btn-xs btn-primary">Public Wiki</button>
+					<% else %>
+						<button type="button" class="btn btn-xs btn-success">Private Wiki</button>
+					<% end %>
 				</h4>
 			</div>
 		</div>

@@ -23,4 +23,21 @@ class WikiPolicy < ApplicationPolicy
   def destroy?
     false
   end
+
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      if user.role == 'admin' or user.role == 'premium'
+        scope.all
+      else 
+        scope.where(:public => true)
+      end
+    end
+  end
 end
