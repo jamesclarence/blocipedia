@@ -4,24 +4,28 @@ class WikiPolicy < ApplicationPolicy
     false
   end
 
+  def show?
+    record.public? || user.present?
+  end
+
   def create?
-    user.present?
+    show?
   end
 
   def new?
-    user.present?
+    show?
   end
 
   def update?
-    false
+    show?
   end
 
   def edit?
-    user.present?
+    show?
   end
 
   def destroy?
-    false
+    show?
   end
 
   class Scope

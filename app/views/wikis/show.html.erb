@@ -3,5 +3,6 @@
 	<p><%= @wiki.body %></p>
 	<%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-xs btn-success' %>
 	<%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %>
+	<%= render partial: 'public_private_button' %>
 	<small>Post created <%= time_ago_in_words(@wiki.created_at)%> ago. Last updated on <%= @wiki.updated_at%>.</small>
 </div>
