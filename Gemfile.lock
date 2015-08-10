@@ -111,6 +111,8 @@ GEM
       slop (~> 3.4)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -145,6 +147,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+    redcarpet (3.2.3)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -211,8 +214,10 @@ DEPENDENCIES
   pg
   pry
   pundit
+  quiet_assets
   rails (= 4.2.0)
   rails_12factor
+  redcarpet
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

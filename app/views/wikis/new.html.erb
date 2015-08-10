@@ -13,16 +13,16 @@
      <%= form_for @wiki do |f| %>
        <div class="form-group">
          <%= f.label :title %>
-         <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+         <%= markdown_to_html f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
        </div>
        <div class="form-group">
          <%= f.label :body %>
-         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+         <%= markdown_to_html f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
        </div>
        <div class="form-group">
          <%= f.submit "Save", class: 'btn btn-success' %>
        </div>
-        <% if current_user.role == 'admin' || current_user.role == 'premium' %>
+        <% unless current_user.standard? %>
           <div class="form-group">
             <%= f.check_box :public, {}, false, true %> Private wiki
           </div>

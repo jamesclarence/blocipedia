@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = policy_scope(Wiki).all.sort_by{|a|a.title}
+    @wikis = policy_scope(Wiki).all
   end
 
   def show
@@ -13,7 +13,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
+    @wiki = Wiki.new(wiki_params)
     authorize @wiki
     
     if @wiki.save
@@ -33,7 +33,7 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     
-    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :public))
+    if @wiki.update_attributes(wiki_params)
      flash[:notice] = "Wiki article was updated."
      redirect_to @wiki
     else
@@ -44,6 +44,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     
     if @wiki.destroy
      flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
