@@ -11,13 +11,19 @@ require 'faker'
   user.save!
 end
 
+users = User.all
+
+random_boolean = [true,false].sample
+
 # Create Wikis
 50.times do
    Wiki.create!(
      title:  Faker::Lorem.sentence,
      body:   Faker::Lorem.paragraph,
      created_at: Faker::Date.between(14.days.ago, 7.days.ago),
-     updated_at: Faker::Date.between(6.days.ago, Date.today)
+     updated_at: Faker::Date.between(6.days.ago, Date.today),
+     user: users.sample,
+     public: random_boolean
    )
  end
  Wikis = Wiki.all

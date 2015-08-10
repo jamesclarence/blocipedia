@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   
+  has_many :wikis, dependent: :update
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -22,4 +23,6 @@ class User < ActiveRecord::Base
   def default_user_role_standard
     self.role ||= 'standard'
   end
+
+
 end

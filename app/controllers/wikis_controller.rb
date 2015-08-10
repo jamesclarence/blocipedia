@@ -54,16 +54,16 @@ class WikisController < ApplicationController
     end
   end
 
-  def public_wiki_to_private
-    @wiki = Wiki.find(params[:public])
+  # def public_wiki_to_private
+  #   @wiki = Wiki.find(params[:public])
     
-    if @wiki.update_attributes(public: false)
-      flash[:notice] = "Wiki changed to Private."
-      redirect_to @wiki
-    else
-      flash[:error] = "There was an error updating the wiki."
-    end
-  end
+  #   if @wiki.update_attributes(public: false)
+  #     flash[:notice] = "Wiki changed to Private."
+  #     redirect_to @wiki
+  #   else
+  #     flash[:error] = "There was an error updating the wiki."
+  #   end
+  # end
 
   private
 
