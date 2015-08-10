@@ -25,7 +25,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    show?
+    user.admin? or user.premium?
   end
 
   class Scope

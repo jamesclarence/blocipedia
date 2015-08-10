@@ -13,8 +13,6 @@ end
 
 users = User.all
 
-random_boolean = 
-
 # Create Wikis
 50.times do
    Wiki.create!(
