@@ -13,7 +13,7 @@ end
 
 users = User.all
 
-random_boolean = [true,false].sample
+random_boolean = 
 
 # Create Wikis
 50.times do
@@ -23,7 +23,7 @@ random_boolean = [true,false].sample
      created_at: Faker::Date.between(14.days.ago, 7.days.ago),
      updated_at: Faker::Date.between(6.days.ago, Date.today),
      user: users.sample,
-     public: random_boolean
+     public: [true,false].sample
    )
  end
  Wikis = Wiki.all
