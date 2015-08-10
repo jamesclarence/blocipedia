@@ -22,7 +22,12 @@
        <div class="form-group">
          <%= f.submit "Save", class: 'btn btn-success' %>
        </div>
-     <% end %>
+        <% if current_user.role == 'admin' || current_user.role == 'premium' %>
+          <div class="form-group">
+            <%= f.check_box :public, {}, false, true %> Private wiki
+          </div>
+        <% end %> 
+    <% end %>
+
    </div>
  </div>
-

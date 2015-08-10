@@ -1,13 +1,24 @@
 <div class="container">
-<h1 class="text-center">All Wikis</h1>
-	<%= link_to "Create A New Wiki", new_wiki_path, class: 'btn btn-success' %>
-	<% @wikis.each do |wiki| %>
-		<div class="media">
-			<div class="media-body">
-				<h4 class="media-heading">
-					<%= link_to wiki.title, wiki %>
-				</h4>
-			</div>
+	<h1 class="text-center">All Wikis</h1>
+		<div class="col-md-12 text-center">
+				<%= link_to "Create A New Wiki", new_wiki_path, class: 'btn btn-lg btn-success center-block' %>
 		</div>
+</div>
+</br>
+	<table class="table">
+	<% @wikis.each do |wiki| %>
+	<tbody>
+		<tr>
+			<td>
+			<%= link_to wiki.title, wiki %>
+			<% if wiki.public == true %>
+				<button type="button" class="btn btn-xs btn-primary">Public Wiki</button>
+			<% else %>
+				<button type="button" class="btn btn-xs btn-success">Private Wiki</button>
+			<% end %>
+			</td>
+		</tr>
 	<% end %>
+	</tbody>
+	</table>
 </div>

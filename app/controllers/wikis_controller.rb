@@ -1,10 +1,11 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all.sort_by{|a|a.title}
+    @wikis = policy_scope(Wiki).all.sort_by{|a|a.title}
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def new
@@ -13,6 +14,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
+    authorize @wiki
     
     if @wiki.save
       flash[:notice] = "Wiki article was saved."
@@ -25,12 +27,13 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
     
-    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
+    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :public))
      flash[:notice] = "Wiki article was updated."
      redirect_to @wiki
     else
@@ -41,7 +44,6 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
     
     if @wiki.destroy
      flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
@@ -49,6 +51,23 @@ class WikisController < ApplicationController
     else
      flash[:error] = "There was an error deleting the wiki."
      render :show
-   end
+    end
+  end
+
+  # def public_wiki_to_private
+  #   @wiki = Wiki.find(params[:public])
+    
+  #   if @wiki.update_attributes(public: false)
+  #     flash[:notice] = "Wiki changed to Private."
+  #     redirect_to @wiki
+  #   else
+  #     flash[:error] = "There was an error updating the wiki."
+  #   end
+  # end
+
+  private
+
+  def wiki_params
+    params.require(:wiki).permit(:id, :title, :body, :public)
   end
 end
