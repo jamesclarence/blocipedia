@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'collaborations/index'
+
+  get 'collaborations/new'
+
+  get 'collaborations/create'
+
+  get 'collaborations/show'
+
+  get 'collaborations/destroy'
+
   get 'users/premium_to_standard'
 
   devise_for :users
@@ -9,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :wikis
   resources :charges
+  resources :collaborators
 
   root to: 'welcome#index'
 end

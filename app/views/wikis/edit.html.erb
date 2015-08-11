@@ -26,6 +26,7 @@
           <div class="form-group">
             <%= f.check_box :public, {}, false, true %> Private wiki
           </div>
+          <%= link_to "Add Collaborator", collaborations_new_path, class: 'btn btn-xs btn-success' %>
         <% end %> 
     <% end %>
 
