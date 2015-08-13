@@ -1,0 +1,27 @@
+<h1>Add a Collaborator To Your Private Wiki</h1>
+<div class="col-md-8">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Add As Collaborator</th>
+			</tr>
+		</thead>
+		<tbody>	
+			<%= form_for [@wiki, @collaborator] do |f| %>
+			<div class="field">
+			<% @user.each do |user| %>
+			    <div class="form-group">
+			    	<tr>
+			    		<td><%= user.name %></td>
+			    		<td><%= user.email %></td>
+			    		<td><%= f.submit "Add Collaborator", class: 'btn btn-primary' %></td>
+			    	</tr>
+			    </div>
+			</div>
+			<% end %> 
+			<% end %>
+		</tbody>
+	</table> 
+</div>
