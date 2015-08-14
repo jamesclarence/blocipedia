@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  has_many :wikis
+  has_many :wikis, through: :collaborators
   has_many :collaborators
   after_update :publicize_wikis_if_standard
   devise :database_authenticatable, :registerable,
