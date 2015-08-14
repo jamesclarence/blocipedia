@@ -10,7 +10,7 @@ class CollaboratorsController < ApplicationController
 
   def create
     @wiki = Wiki.find(params[:wiki_id])
-    @collaborator = Collaborator.new(params[:user_id])
+    @collaborator = Collaborator.new(user_id: params[:user_id], wiki_id: params[:wiki_id])
 
     if @collaborator.save
       flash[:notice] = "You added a collaborator for your wiki."
