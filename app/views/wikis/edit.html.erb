@@ -29,6 +29,11 @@
           </div>
         <% end %> 
     <% end %>
-
+    <h2>Collaborators</h2>
+    <% @wiki.collaborators.each do |collaborator| %>
+      <p class="media-heading">
+        <%= @wiki.collaborator %>
+      </p>
+<% end %>
    </div>
  </div>

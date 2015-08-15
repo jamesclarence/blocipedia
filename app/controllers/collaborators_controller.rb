@@ -21,6 +21,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def show
+     @collaborator = Collaborator.find(params[:wiki])
   end
 
   def destroy
