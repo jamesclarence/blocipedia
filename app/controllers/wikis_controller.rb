@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = policy_scope(Wiki).all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -54,17 +54,6 @@ class WikisController < ApplicationController
      render :show
     end
   end
-
-  # def public_wiki_to_private
-  #   @wiki = Wiki.find(params[:public])
-    
-  #   if @wiki.update_attributes(public: false)
-  #     flash[:notice] = "Wiki changed to Private."
-  #     redirect_to @wiki
-  #   else
-  #     flash[:error] = "There was an error updating the wiki."
-  #   end
-  # end
 
   private
 

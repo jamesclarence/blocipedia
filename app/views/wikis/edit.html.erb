@@ -21,6 +21,7 @@
        </div>
        <div class="form-group">
          <%= f.submit "Save", class: 'btn btn-success' %>
+         <%= link_to "Add/Delete Collaborator", new_wiki_collaborator_path(@wiki), class: 'btn btn-primary' %>
        </div>
         <% unless current_user.standard? %>
           <div class="form-group">
@@ -28,6 +29,11 @@
           </div>
         <% end %> 
     <% end %>
-
+    <h2>Collaborators</h2>
+    <% @wiki.collaborated_users.each do |collaborator| %>
+      <p class="media-heading">
+        <%= collaborator.email %>
+      </p>
+<% end %>
    </div>
  </div>

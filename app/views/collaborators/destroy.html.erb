@@ -1,0 +1,26 @@
+<h1>Delete A Collaborator To Your Private Wiki</h1>
+<div class="col-md-8">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Delete As Collaborator</th>
+			</tr>
+		</thead>
+		<tbody>	
+			<div class="field">
+			<% @user.each do |user| %>
+				
+			    <div class="form-group">
+			    	<tr>
+			    		<td><%= user.name %></td>
+			    		<td><%= user.email %></td>
+			    		<td><%= button_to "Delete Collaborator", wiki_collaborator_path(@wiki.id), method: :delete, params: { user_id: user.id } %></td>
+			    	</tr>
+			    </div>
+			</div> 
+			<% end %>
+		</tbody>
+	</table> 
+</div>
