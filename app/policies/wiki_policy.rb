@@ -1,7 +1,7 @@
 class WikiPolicy < ApplicationPolicy
   
   def index?
-    true
+    false
   end
 
   def show?
@@ -29,11 +29,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   class Scope
-    attr_reader :user, :wiki, :scope
+    attr_reader :user, :scope # :wiki,
 
-    def initialize(user, wiki, scope)
+    def initialize(user, scope) # wiki,
       @user = user
-      @wiki = wiki
+      # @wiki = wiki
       @scope = scope
     end
 
@@ -44,15 +44,14 @@ class WikiPolicy < ApplicationPolicy
        elsif user.role == 'premium'
          all_wikis = scope.all
          all_wikis.each do |wiki|
-           if wiki.public? || wiki.user == user || wiki.users.include?(user)
+           if wiki || wiki.user == user || wiki.collaborated_users.include?(user) # || wiki.public? 
              wikis << wiki # if the user is premium, only show them public wikis, or that private wikis they created, or private wikis they are a collaborator on
            end
          end
        else # this is the lowly standard user
          all_wikis = scope.all
-         wikis = []
          all_wikis.each do |wiki|
-           if wiki.public? || wiki.users.include?(user)
+           if wiki.public? || wiki.collaborated_users.include?(user)
              wikis << wiki # only show standard users public wikis and private wikis they are a collaborator on
            end
          end

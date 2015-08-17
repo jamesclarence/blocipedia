@@ -1,6 +1,6 @@
 <div class="media">
-	<h1><%= markdown_to_html @wiki.title %></h1>
-	<p><%= markdown_to_html @wiki.body %></p>
+	<h1><%= @wiki.title %></h1>
+	<p><%= @wiki.body %></p>
 	<%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-xs btn-success' %>
 	<%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %>
 	<%= render partial: 'public_private_button' %>

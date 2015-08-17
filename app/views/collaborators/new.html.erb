@@ -5,7 +5,8 @@
 			<tr>
 				<th>Name</th>
 				<th>Email</th>
-				<th>Add As Collaborator</th>
+				<th>Add Collaborator</th>
+				<th>Delete Collaborator</th>
 			</tr>
 		</thead>
 		<tbody>	
@@ -17,6 +18,7 @@
 			    		<td><%= user.name %></td>
 			    		<td><%= user.email %></td>
 			    		<td><%= button_to "Add Collaborator", wiki_collaborators_path(@wiki.id), params: { user_id: user.id } %></td>
+			    		<td><%= button_to "Delete Collaborator", wiki_collaborator_path(@wiki, @user), method: :delete, params: { collaborated_users: user.id } %></td>
 			    	</tr>
 			    </div>
 			</div> 

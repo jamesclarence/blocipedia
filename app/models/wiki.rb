@@ -1,7 +1,7 @@
 class Wiki < ActiveRecord::Base
-  belongs_to :users
+  belongs_to :user
   has_many :collaborators
-  has_many :users, through: :collaborators
+  has_many :collaborated_users, through: :collaborators, source: :user
   before_create :default_wiki_public
   
   default_scope { order(title: :asc) }
